@@ -1,0 +1,23 @@
+<h2>Datos de la Factura</h2>
+@if (items.length>0){
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>PRODUCTO</th>
+                                <th>PRECIO</th>
+                                <th>CANTIDAD</th>
+                                <th>ELIMINAR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            @for (item of items; track $index) {
+                                <tr app-row-items [item]="item" (removeEventEmitter)="onRemove($event)"></tr>
+                            
+                            }
+                        </tbody>
+                    </table>
+} @else {
+    <div class="alert alert-warning">La factura no tiene items</div>
+}

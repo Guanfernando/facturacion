@@ -1,0 +1,52 @@
+<form class="w-50" (ngSubmit)="onSubmit(itemForm)" #itemForm="ngForm">
+    <input name="product" 
+    placeholder="Producto" 
+    class="form-control m-3"
+    [(ngModel)]="item.product"
+    required minlength="5"
+    #product="ngModel">
+    @if (product.invalid && (product.dirty || product.touched)){
+        @if (product.errors!['required!']){
+            <div class="text-danger mx-3"  >El producto es requerido!</div>
+        }
+        @if (product.errors!['minlength']){
+            <div class="text-danger mx-3"  >El producto debe tener al menos 5 caracteres!</div>
+            }
+    }
+
+    
+    
+    <input name="price"
+    type="number"
+    placeholder="Precio" 
+    class="form-control m-3"
+    [(ngModel)]="item.price"
+    required
+    #price="ngModel">
+    @if (price.invalid && (price.dirty || price.touched)){
+        @if (price.errors!['required!']){
+            <div class="text-danger mx-3"   >El precio es requerido!</div>
+        }
+
+    }
+
+    
+    <input name="quantity"
+    type="number"
+    placeholder="Cantidad" 
+    class="form-control m-3"
+    [(ngModel)]="item.quantity"
+    required min="1"
+    #quantity="ngModel">
+    @if (quantity.invalid && (quantity.dirty || quantity.touched)){
+        @if (quantity.errors!['required!']){
+            <div class="text-danger mx-3"  >La cantidad es requerida</div>
+        }
+            @if (quantity.errors!['min']){
+                <div class="text-danger mx-3"  >La cantidad debe ser mayor a 0</div>
+            }
+    }
+
+
+    <button class="btn btn-primary mx-3" [disabled]="itemForm.invalid">Agregar Item</button>
+</form>
